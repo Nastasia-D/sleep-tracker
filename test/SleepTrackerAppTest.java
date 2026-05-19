@@ -59,10 +59,10 @@ public class SleepTrackerAppTest {
 
     @Test
     void testAnalyzeSessionCount() {
-        SleepSessionCountFunction function =new SleepSessionCountFunction();
+        SleepSessionCountFunction function = new SleepSessionCountFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Общее количество сессий сна: 8";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SleepTrackerAppTest {
         SleepSessionCountFunction function = new SleepSessionCountFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Общее количество сессий сна: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SleepTrackerAppTest {
         AverageSessionDurationMinutesFunction function = new AverageSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Средняя продолжительность сессии: 350";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class SleepTrackerAppTest {
         AverageSessionDurationMinutesFunction function = new AverageSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Средняя продолжительность сессии: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class SleepTrackerAppTest {
         MinSessionDurationMinutesFunction function = new MinSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Минимальная продолжительность сессии в минутах: 45";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class SleepTrackerAppTest {
         MinSessionDurationMinutesFunction function = new MinSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Минимальная продолжительность сессии в минутах: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class SleepTrackerAppTest {
         MaxSessionDurationMinutesFunction function = new MaxSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Максимальная продолжительность сессии в минутах: 550";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class SleepTrackerAppTest {
         MaxSessionDurationMinutesFunction function = new MaxSessionDurationMinutesFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Максимальная продолжительность сессии в минутах: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -130,7 +130,7 @@ public class SleepTrackerAppTest {
         SleepChronotypeFunction function = new SleepChronotypeFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Хронотип пользователя: Голубь";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -139,7 +139,7 @@ public class SleepTrackerAppTest {
         SleepChronotypeFunction function = new SleepChronotypeFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Хронотип пользователя: Не определен";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -147,7 +147,7 @@ public class SleepTrackerAppTest {
         BadSleepSessionsCountFunction function = new BadSleepSessionsCountFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Количество сессий с плохим качеством сна: 4";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class SleepTrackerAppTest {
         BadSleepSessionsCountFunction function = new BadSleepSessionsCountFunction();
         SleepAnalysisResult result = function.apply(testSleep);
         String expectedText = "Количество сессий с плохим качеством сна: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -182,7 +182,7 @@ public class SleepTrackerAppTest {
         SleeplessNightsCountFunction function = new SleeplessNightsCountFunction();
         SleepAnalysisResult result = function.apply(localTestSession);
         String expectedText = "Количество бессонных ночей: 1";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -208,7 +208,7 @@ public class SleepTrackerAppTest {
         SleeplessNightsCountFunction function = new SleeplessNightsCountFunction();
         SleepAnalysisResult result = function.apply(localTestSession);
         String expectedText = "Количество бессонных ночей: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -218,7 +218,7 @@ public class SleepTrackerAppTest {
         SleeplessNightsCountFunction function = new SleeplessNightsCountFunction();
         SleepAnalysisResult result = function.apply(localTestSession);
         String expectedText = "Количество бессонных ночей: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
     @Test
@@ -244,7 +244,8 @@ public class SleepTrackerAppTest {
         SleeplessNightsCountFunction function = new SleeplessNightsCountFunction();
         SleepAnalysisResult result = function.apply(localTestSession);
         String expectedText = "Количество бессонных ночей: 0";
-        Assertions.assertEquals(expectedText, result.formatTextResult());
+        Assertions.assertEquals(expectedText, result.toString());
     }
 
 }
+// Финальная версия проекта с тестами

@@ -15,34 +15,11 @@ public class SleepChronotypeFunction implements Function<TreeMap<LocalDateTime, 
             return "Не определен";
         }
         long larkCount = sessions.values().stream()
-                .filter(session -> {
-                    int startHour = session.getStart().getHour();
-                    int endHour = session.getEnd().getHour();
-
-                    boolean isDifferentNight = !session.getStart().toLocalDate().equals(session.getEnd().toLocalDate());
-
-                    if (startHour > 5 && startHour < 18) {
-                        return false;
-                    }
-
-                    return isDifferentNight && (endHour < 7 || startHour < 22);
-                })
+                .filter(session -> isLarkSession(session))
                 .count();
 
         long owlCount = sessions.values().stream()
-                .filter(session -> {
-                    int startHour = session.getStart().getHour();
-                    int endHour = session.getEnd().getHour();
-
-                    boolean isDifferentNight = !session.getStart().toLocalDate().equals(session.getEnd().toLocalDate());
-
-                    if (startHour > 5 && startHour < 18) {
-                        return false;
-                    }
-
-                    boolean lateStart =  !isDifferentNight && (startHour >= 23 || startHour <= 4);
-                    return lateStart && endHour >= 9;
-                })
+                .filter(session -> isOwlSession(session))
                 .count();
 
         long totalSessions = sessions.size();
@@ -59,6 +36,34 @@ public class SleepChronotypeFunction implements Function<TreeMap<LocalDateTime, 
 
         return dominantChronotype;
     }
+
+    private boolean isLarkSession(SleepingSession session) {
+        int startHour = session.getStart().getHour();
+        int endHour = session.getEnd().getHour();
+
+        boolean isDifferentNight = !session.getStart().toLocalDate().equals(session.getEnd().toLocalDate());
+
+        if (startHour > 5 && startHour < 18) {
+            return false;
+        }
+
+        return isDifferentNight && (endHour < 7 || startHour < 22);
+    }
+
+    private boolean isOwlSession(SleepingSession session) {
+        int startHour = session.getStart().getHour();
+        int endHour = session.getEnd().getHour();
+
+        boolean isDifferentNight = !session.getStart().toLocalDate().equals(session.getEnd().toLocalDate());
+
+        if (startHour > 5 && startHour < 18) {
+            return false;
+        }
+
+        boolean lateStart =  !isDifferentNight && (startHour >= 23 || startHour <= 4);
+        return lateStart && endHour >= 9;
+    }
+
 
 }
 

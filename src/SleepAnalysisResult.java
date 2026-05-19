@@ -8,7 +8,8 @@ public class SleepAnalysisResult {
         this.value = value;
     }
 
-    public String formatTextResult(){
+    @Override
+    public String toString() {
         return description + ": " + value;
     }
 }
