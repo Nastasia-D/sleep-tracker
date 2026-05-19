@@ -18,10 +18,17 @@ public class SleepTrackerApp {
 
     public static void main(String[] args) {
 
+        if(args.length == 0) {
+            System.out.println("Ошибка: не указан путь к файлу с данными");
+            return;
+        }
+
         SleepTrackerApp app = new SleepTrackerApp();
 
         try {
-            TreeMap<LocalDateTime, SleepingSession> sleepDataTime = app.loadSleepData("log.file", StandardCharsets.UTF_8);
+
+            String filePath = args[0];
+            TreeMap<LocalDateTime, SleepingSession> sleepDataTime = app.loadSleepData(filePath,  StandardCharsets.UTF_8);
             List<Function<TreeMap<LocalDateTime, SleepingSession>, SleepAnalysisResult>>  analyzers = new ArrayList<>();
 
             analyzers.add(new SleepSessionCountFunction());
@@ -35,7 +42,7 @@ public class SleepTrackerApp {
             System.out.println("Анализ данных сна: ");
 
             analyzers.stream()
-                    .map(analyzer -> analyzer.apply(sleepDataTime).formatTextResult())
+                    .map(analyzer -> analyzer.apply(sleepDataTime).toString())
                     .forEach(System.out :: println);
 
         } catch (Exception e) {

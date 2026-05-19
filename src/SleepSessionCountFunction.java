@@ -6,12 +6,7 @@ public class SleepSessionCountFunction implements Function<TreeMap<LocalDateTime
 
     @Override
     public SleepAnalysisResult apply(TreeMap<LocalDateTime, SleepingSession> count) {
-        int totalCount = analyzeSessionCount(count);
-        return new SleepAnalysisResult("Общее количество сессий сна", totalCount);
-    }
-    public int analyzeSessionCount(TreeMap<LocalDateTime, SleepingSession> count) {
-
-        return count.size();
+        return new SleepAnalysisResult("Общее количество сессий сна", count.size());
     }
 }
 
